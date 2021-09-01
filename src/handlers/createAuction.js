@@ -14,7 +14,7 @@ async function createAuction(event, context) {
   const auction = {
     id: uuid(),
     title,
-    status: "OEPN",
+    status: "OPEN",
     createdAt: now.toISOString(),
     endingAt: endDate.toISOString(),
     highestBid: {
