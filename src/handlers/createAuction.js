@@ -46,7 +46,7 @@ export const handler = commonMiddleware(createAuction).use(
   validator({
     inputSchema: createAuctionSchema,
     ajvOptions: {
-      strict: true,
+      strict: false,
     },
   })
 );
