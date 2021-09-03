@@ -15,3 +15,13 @@ npm install
 ```
 
 You are ready to go!
+
+--
+
+curl --location --request POST 'https://dev-4crrpr99.us.auth0.com/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=u5upP6AoNZiVewW5cuhANBeHOFIAOwZM' \
+--data-urlencode 'username=knuckles4x@gmail.com' \
+--data-urlencode 'password=PASSWORD_HERE' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'scope=openid'
