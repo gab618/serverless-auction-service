@@ -15,11 +15,18 @@ provider:
   environment:
     AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
     ENV: "dev"
+    imageUploadBucket: ${self:custom.imageUploadBucket}
+    region: ${self:provider.region}
   iamRoleStatements:
     - ${file(iam/AuctionsTableIAM.yml):AuctionsTableIAM}
 resources:
   Resources:
     AuctionsTable: ${file(resources/AuctionsTable.yml):AuctionsTable}
+    ImageUploadBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.imageUploadBucket}
+        AccessControl: PublicRead
 functions:
   createAuction:
     handler: src/handlers/createAuction.handler
@@ -60,6 +67,14 @@ functions:
           method: GET
           path: /test
 
+  imageUpload:
+    handler: src/handlers/imageUpload.handler
+    events:
+      - http:
+          method: POST
+          path: /image-upload
+          cors: true
+
   processAuctions:
     handler: src/handlers/processAuctions.handler
     # events:
@@ -70,5 +85,6 @@ custom:
   AuctionsTable:
     name: !Ref AuctionsTable
     arn: !GetAtt AuctionsTable.Arn
+  imageUploadBucket: moux-upload-bucket-sws-eu
   bundle:
     linting: false

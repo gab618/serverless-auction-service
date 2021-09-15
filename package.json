@@ -23,6 +23,7 @@
     "@middy/validator": "^2.5.1",
     "aws-sdk": "^2.639.0",
     "dynamoose": "^2.8.1",
+    "file-type": "^16.5.3",
     "http-errors": "^1.8.0",
     "mongoose": "^6.0.3",
     "uuid": "^8.3.2"
